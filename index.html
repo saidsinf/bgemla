@@ -54,8 +54,15 @@ body{font-family:'Tajawal','Cairo',sans-serif;background:var(--bg);color:var(--t
 .cd{background:var(--c);border-radius:var(--r);overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.08);transition:.35s cubic-bezier(.23,1,.32,1);border:1px solid var(--bd);cursor:pointer}
 .cd:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(0,0,0,.12),0 0 25px rgba(212,56,13,.1);border-color:var(--pl)}
 .ci{position:relative;height:230px;overflow:hidden;background:#f0ebe5}
-.ci img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.cd:hover .ci img{transform:scale(1.07)}
+.ci img{width:100%;height:100%;object-fit:cover;transition:opacity .3s;position:absolute;top:0;left:0;opacity:0}
+.ci img.active{opacity:1;position:relative}
+.cd:hover .ci img.active{transform:scale(1.07)}
+.ci-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:2}
+.ci-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:.2s;border:1px solid rgba(0,0,0,.1)}
+.ci-dot.on{background:#fff;transform:scale(1.2)}
+.ci-nav{position:absolute;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.8);border:none;cursor:pointer;font-size:14px;z-index:2;display:none;align-items:center;justify-content:center;color:#1A2744}
+.ci-nav.prev{right:8px}.ci-nav.next{left:8px}
+.cd:hover .ci-nav{display:flex}
 .bg{position:absolute;top:12px;right:12px;background:var(--er);color:#fff;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;animation:bp 2s ease-in-out infinite}
 @keyframes bp{50%{transform:scale(1.05)}}
 .ds{position:absolute;top:12px;left:12px;background:var(--a);color:var(--s);padding:5px 12px;border-radius:50px;font-size:13px;font-weight:800;font-family:'Cairo'}
@@ -213,6 +220,14 @@ function loadProducts(){
   sb.from("products").select("*").eq("active",true).order("created_at",{ascending:false})
     .then(function(res){
       P=res.data||[];
+      for(var i=0;i<P.length;i++){
+        var imgs=[];
+        if(P[i].image_url)imgs.push(P[i].image_url);
+        if(P[i].image_url_2)imgs.push(P[i].image_url_2);
+        if(P[i].image_url_3)imgs.push(P[i].image_url_3);
+        if(P[i].image_url_4)imgs.push(P[i].image_url_4);
+        P[i].imgs=imgs.length?imgs:[""];
+      }
       document.getElementById("loading").style.display="none";
       updateStats();R();
     });
@@ -241,16 +256,31 @@ function CH(p){
   var ch="";
   if(tl){ch='<div class="cn'+(tl.d<2?" ug":"")+'"><div class="cn-l">⏰ ينتهي خلال</div><div class="cn-b" data-end="'+p.end_date+'"><div class="cn-x"><b>'+pd(tl.d)+'</b><small>يوم</small></div><div class="cn-x"><b>'+pd(tl.h)+'</b><small>ساعة</small></div><div class="cn-x"><b>'+pd(tl.m)+'</b><small>دقيقة</small></div><div class="cn-x"><b>'+pd(tl.s)+'</b><small>ثانية</small></div></div></div>'}
   else if(p.end_date){ch='<div style="color:var(--er);font-weight:700;text-align:center;padding:10px">انتهى العرض</div>'}
-  return '<div class="cd" onclick="O(\''+p.sku+'\')"><div class="ci"><img src="'+(p.image_url||"")+'" alt="'+p.title_ar+'" loading="lazy"><div class="bg">'+(p.badge||"عرض")+'</div><div class="ds">-'+d+'%</div><div class="sk">SKU: '+p.sku+'</div></div><div class="cb"><h3>'+p.title_ar+'</h3><p class="de">'+(p.description_ar||"")+'</p><div class="ft">'+fh+'</div><div class="pc"><div class="pr"><span class="po">'+F(p.original_price)+'</span><span class="pn">'+F(p.group_price)+'</span></div><div class="sv">وفّر '+F(p.original_price-p.group_price)+'</div></div><div class="pg"><div class="pg-h"><span>'+(ht?'🔥 قارب على الإكتمال!':'👥 الطلبات الجماعية')+'</span><span>'+p.current_orders+' / '+p.min_orders+'</span></div><div class="pg-t"><div class="pg-f'+(ht?" ht":"")+'" style="width:'+pc+'%">'+(pc>=20?'<i>'+Math.round(pc)+'%</i>':'')+'</div></div>'+(rm>0?'<div class="pg-r">باقي <strong>'+rm+'</strong> طلب لتفعيل الثمن</div>':'')+'</div>'+ch+'<div class="sp"><div class="sp-r"><span>🚚 توصيل الدار البيضاء</span><span>'+(s1p===0?'مجاني':F(s1p))+'</span></div><div class="sp-r"><span>📦 توصيل باقي المدن</span><span>'+F(s2p)+'</span></div></div><button class="bt" onclick="event.stopPropagation();O(\''+p.sku+'\')">🛒 اطلب دابا - الدفع عند الاستلام</button><div class="co">💵 الدفع عند الاستلام</div></div></div>'
+  var imgs=p.imgs||[p.image_url||""];
+  var imgH="";for(var ii=0;ii<imgs.length;ii++)imgH+='<img src="'+imgs[ii]+'" alt="'+p.title_ar+'" loading="lazy" class="'+(ii===0?"active":"")+'" data-idx="'+ii+'">';
+  var dotsH="";if(imgs.length>1){dotsH='<div class="ci-dots">';for(var ii=0;ii<imgs.length;ii++)dotsH+='<span class="ci-dot'+(ii===0?" on":"")+'" data-idx="'+ii+'"></span>';dotsH+='</div>';dotsH+='<button class="ci-nav prev" onclick="event.stopPropagation();slideImg(this,-1)">&#8250;</button><button class="ci-nav next" onclick="event.stopPropagation();slideImg(this,1)">&#8249;</button>'}
+  return '<div class="cd" onclick="O(\''+p.sku+'\')"><div class="ci">'+imgH+dotsH+'<div class="bg">'+(p.badge||"عرض")+'</div><div class="ds">-'+d+'%</div><div class="sk">SKU: '+p.sku+'</div></div><div class="cb"><h3>'+p.title_ar+'</h3><p class="de">'+(p.description_ar||"")+'</p><div class="ft">'+fh+'</div><div class="pc"><div class="pr"><span class="po">'+F(p.original_price)+'</span><span class="pn">'+F(p.group_price)+'</span></div><div class="sv">وفّر '+F(p.original_price-p.group_price)+'</div></div><div class="pg"><div class="pg-h"><span>'+(ht?'🔥 قارب على الإكتمال!':'👥 الطلبات الجماعية')+'</span><span>'+p.current_orders+' / '+p.min_orders+'</span></div><div class="pg-t"><div class="pg-f'+(ht?" ht":"")+'" style="width:'+pc+'%">'+(pc>=20?'<i>'+Math.round(pc)+'%</i>':'')+'</div></div>'+(rm>0?'<div class="pg-r">باقي <strong>'+rm+'</strong> طلب لتفعيل الثمن</div>':'')+'</div>'+ch+'<div class="sp"><div class="sp-r"><span>🚚 توصيل الدار البيضاء</span><span>'+(s1p===0?'مجاني':F(s1p))+'</span></div><div class="sp-r"><span>📦 توصيل باقي المدن</span><span>'+F(s2p)+'</span></div></div><button class="bt" onclick="event.stopPropagation();O(\''+p.sku+'\')">🛒 اطلب دابا - الدفع عند الاستلام</button><div class="co">💵 الدفع عند الاستلام</div></div></div>'
 }
 setInterval(function(){var bx=document.querySelectorAll(".cn-b[data-end]");for(var i=0;i<bx.length;i++){var tl=TL(bx[i].getAttribute("data-end"));if(!tl){bx[i].parentElement.innerHTML='<div style="color:var(--er);font-weight:700;text-align:center;padding:10px">انتهى العرض</div>';continue}var b=bx[i].querySelectorAll("b");b[0].textContent=pd(tl.d);b[1].textContent=pd(tl.h);b[2].textContent=pd(tl.m);b[3].textContent=pd(tl.s)}},1000);
+
+function slideImg(btn,dir){
+  var ci=btn.parentElement;
+  var imgs=ci.querySelectorAll("img");
+  var dots=ci.querySelectorAll(".ci-dot");
+  var cur=0;for(var i=0;i<imgs.length;i++)if(imgs[i].classList.contains("active"))cur=i;
+  imgs[cur].classList.remove("active");if(dots[cur])dots[cur].classList.remove("on");
+  var next=cur+dir;if(next<0)next=imgs.length-1;if(next>=imgs.length)next=0;
+  imgs[next].classList.add("active");if(dots[next])dots[next].classList.add("on");
+}
 
 function FP(s){for(var i=0;i<P.length;i++)if(P[i].sku===s)return P[i];return null}
 function O(s){cp=FP(s);if(!cp)return;qq=1;document.body.style.overflow="hidden";RF();document.getElementById("ov").classList.add("op")}
 function X(){document.getElementById("ov").classList.remove("op");document.body.style.overflow="";cp=null}
 function RF(){
   var p=cp,ch="";for(var i=0;i<CI.length;i++)ch+='<option value="'+CI[i]+'">'+CI[i]+'</option>';
-  document.getElementById("mb").innerHTML='<div class="mp"><img src="'+(p.image_url||"")+'" alt="'+p.title_ar+'"><div><h3>'+p.title_ar+'</h3><div class="ms">SKU: '+p.sku+'</div><div class="mc">'+F(p.group_price)+'</div></div></div><h2 class="mt">إتمام الطلب</h2><div class="fg"><label>الاسم الكامل *</label><input id="fn" placeholder="مثال: أحمد بنعلي"><span class="et" id="en">المرجو إدخال الاسم</span></div><div class="fg"><label>رقم الهاتف *</label><input id="fp" placeholder="06XXXXXXXX" dir="ltr"><span class="et" id="ep">رقم هاتف غير صالح</span></div><div class="fg"><label>المدينة *</label><select id="fc" onchange="US()">'+ch+'</select></div><div class="fg"><label>العنوان بالتفصيل *</label><textarea id="fa" placeholder="الحي، الزنقة، أقرب معلمة..." rows="3"></textarea><span class="et" id="ea">المرجو إدخال العنوان</span></div><div class="fg"><label>الكمية</label><div class="qt"><button type="button" onclick="QC(-1)">−</button><span id="qv">1</span><button type="button" onclick="QC(1)">+</button></div></div><div class="fg"><label>ملاحظات (اختياري)</label><textarea id="fno" placeholder="لون مفضل، وقت التوصيل..." rows="2"></textarea></div><div class="os" id="sm"></div><button class="bt bt-l" id="sb" onclick="SB()">تأكيد الطلب 🛒</button>';
+  var mImgs='<img src="'+(p.imgs[0]||"")+'" style="width:72px;height:72px;border-radius:12px;object-fit:cover" id="modalMainImg">';
+  var thumbs="";if(p.imgs.length>1){thumbs='<div style="display:flex;gap:4px;margin-top:6px">';for(var i=0;i<p.imgs.length;i++)thumbs+='<img src="'+p.imgs[i]+'" style="width:32px;height:32px;border-radius:6px;object-fit:cover;cursor:pointer;border:2px solid '+(i===0?"#D4380D":"transparent")+'" onclick="document.getElementById(\'modalMainImg\').src=this.src;this.parentElement.querySelectorAll(\'img\').forEach(function(x){x.style.borderColor=\'transparent\'});this.style.borderColor=\'#D4380D\'">';thumbs+='</div>'}
+  document.getElementById("mb").innerHTML='<div class="mp"><div>'+mImgs+thumbs+'</div><div><h3>'+p.title_ar+'</h3><div class="ms">SKU: '+p.sku+'</div><div class="mc">'+F(p.group_price)+'</div></div></div><h2 class="mt">إتمام الطلب</h2><div class="fg"><label>الاسم الكامل *</label><input id="fn" placeholder="مثال: أحمد بنعلي"><span class="et" id="en">المرجو إدخال الاسم</span></div><div class="fg"><label>رقم الهاتف *</label><input id="fp" placeholder="06XXXXXXXX" dir="ltr"><span class="et" id="ep">رقم هاتف غير صالح</span></div><div class="fg"><label>المدينة *</label><select id="fc" onchange="US()">'+ch+'</select></div><div class="fg"><label>العنوان بالتفصيل *</label><textarea id="fa" placeholder="الحي، الزنقة، أقرب معلمة..." rows="3"></textarea><span class="et" id="ea">المرجو إدخال العنوان</span></div><div class="fg"><label>الكمية</label><div class="qt"><button type="button" onclick="QC(-1)">−</button><span id="qv">1</span><button type="button" onclick="QC(1)">+</button></div></div><div class="fg"><label>ملاحظات (اختياري)</label><textarea id="fno" placeholder="لون مفضل، وقت التوصيل..." rows="2"></textarea></div><div class="os" id="sm"></div><button class="bt bt-l" id="sb" onclick="SB()">تأكيد الطلب 🛒</button>';
   US();
 }
 function QC(d){qq=Math.max(1,Math.min(10,qq+d));document.getElementById("qv").textContent=qq;US()}
