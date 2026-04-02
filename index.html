@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="B'Gemla — بالجملة — أول منصة شراء جماعي في المغرب. شري بثمن الجملة والدفع عند الاستلام">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+<title>B'Gemla — بالجملة | شري بثمن الجملة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&family=Cairo:wght@700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--p:#D4380D;--pd:#A8280A;--pl:#FF6B3D;--s:#1A2744;--a:#F5A623;--ok:#27AE60;--er:#E74C3C;--bg:#F7F4F0;--c:#FFF;--t:#1A1A2E;--t2:#6B7280;--bd:#E5E7EB;--g:linear-gradient(135deg,#D4380D,#FF6B3D 50%,#F5A623);--gd:linear-gradient(135deg,#1A2744,#2D4160);--r:16px;--rs:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Tajawal','Cairo',sans-serif;background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mq{background:var(--s);color:#fff;padding:8px 0;overflow:hidden;font-size:14px;font-weight:500}
+.mq-t{display:flex;gap:60px;animation:mqs 35s linear infinite;white-space:nowrap;width:max-content}
+.mq-t span{flex-shrink:0}
+@keyframes mqs{to{transform:translateX(-50%)}}
+.hd{background:var(--gd);position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.hd-i{max-width:1400px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.lg{display:flex;align-items:center;gap:12px}
+.lg-i{width:50px;height:50px;background:var(--g);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 15px rgba(212,56,13,.4)}
+.lg-t{color:#fff;font-family:'Cairo';font-weight:900;font-size:24px;line-height:1}
+.lg-s{color:var(--a);font-size:11px;font-weight:600;letter-spacing:1px}
+.sr{flex:1;max-width:500px;position:relative}
+.sr input{width:100%;padding:12px 20px 12px 48px;border:2px solid rgba(255,255,255,.15);border-radius:50px;background:rgba(255,255,255,.1);color:#fff;font-family:'Tajawal';font-size:15px;outline:none;transition:.3s}
+.sr input::placeholder{color:rgba(255,255,255,.5)}
+.sr input:focus{border-color:var(--a);background:rgba(255,255,255,.18)}
+.sr-ic{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:18px;opacity:.5}
+.hr{background:var(--g);padding:48px 24px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.hr::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,.03) 20px,rgba(255,255,255,.03) 40px);animation:hp 20s linear infinite}
+@keyframes hp{to{transform:translate(40px,40px)}}
+.hr-c{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.hr h1{font-family:'Cairo';font-size:clamp(26px,5vw,44px);font-weight:900;margin-bottom:12px;text-shadow:0 2px 10px rgba(0,0,0,.2)}
+.hr p{font-size:clamp(15px,2.5vw,19px);opacity:.95;margin-bottom:24px;line-height:1.7}
+.hr-s{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.hs{text-align:center}
+.hs b{font-family:'Cairo';font-size:34px;font-weight:900;display:block}
+.hs span{font-size:13px;opacity:.85}
+.tb{background:var(--c);border-bottom:1px solid var(--bd);padding:14px 24px;display:flex;justify-content:center;gap:28px;flex-wrap:wrap;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tb div{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--s)}
+.tb .ti{font-size:18px}
+.cw{max-width:1400px;margin:0 auto;padding:24px 24px 0}
+.cs{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.cs::-webkit-scrollbar{display:none}
+.ct{flex-shrink:0;padding:10px 22px;border:2px solid var(--bd);border-radius:50px;background:var(--c);cursor:pointer;font-family:'Tajawal';font-size:14px;font-weight:600;color:var(--t);transition:.25s;display:flex;align-items:center;gap:6px}
+.ct:hover{border-color:var(--p);color:var(--p);transform:translateY(-2px)}
+.ct.on{background:var(--p);color:#fff;border-color:var(--p);box-shadow:0 4px 15px rgba(212,56,13,.3)}
+.pw{max-width:1400px;margin:0 auto;padding:24px}
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.ph h2{font-family:'Cairo';font-size:22px;font-weight:800;color:var(--s)}
+.ph em{font-style:normal;font-size:13px;color:var(--t2);background:var(--c);padding:6px 14px;border-radius:50px;border:1px solid var(--bd)}
+.gd{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
+.cd{background:var(--c);border-radius:var(--r);overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.08);transition:.35s cubic-bezier(.23,1,.32,1);border:1px solid var(--bd);cursor:pointer}
+.cd:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(0,0,0,.12),0 0 25px rgba(212,56,13,.1);border-color:var(--pl)}
+.ci{position:relative;height:230px;overflow:hidden;background:#f0ebe5}
+.ci img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cd:hover .ci img{transform:scale(1.07)}
+.bg{position:absolute;top:12px;right:12px;background:var(--er);color:#fff;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;animation:bp 2s ease-in-out infinite}
+@keyframes bp{50%{transform:scale(1.05)}}
+.ds{position:absolute;top:12px;left:12px;background:var(--a);color:var(--s);padding:5px 12px;border-radius:50px;font-size:13px;font-weight:800;font-family:'Cairo'}
+.sk{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.6);color:#fff;padding:3px 10px;border-radius:6px;font-size:10px;font-family:monospace}
+.cb{padding:18px}
+.cb h3{font-family:'Cairo';font-size:17px;font-weight:800;color:var(--s);margin-bottom:6px;line-height:1.4}
+.cb .de{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ft{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.ft span{font-size:11px;background:#F0FAF0;color:#2E7D32;padding:3px 9px;border-radius:6px;font-weight:500}
+.pc{margin-bottom:14px}
+.pr{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.po{font-size:15px;color:var(--t2);text-decoration:line-through}
+.pn{font-family:'Cairo';font-size:24px;font-weight:900;color:var(--p)}
+.sv{font-size:12px;color:var(--ok);font-weight:700;background:#E8F5E9;display:inline-block;padding:3px 10px;border-radius:6px}
+.pg{margin-bottom:12px}
+.pg-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.pg-h span:first-child{font-size:12px;font-weight:600}
+.pg-h span:last-child{font-size:12px;font-weight:700;color:var(--p);font-family:'Cairo'}
+.pg-t{height:10px;background:#F0ECEC;border-radius:50px;overflow:hidden}
+.pg-f{height:100%;background:var(--g);border-radius:50px;transition:width 1s;display:flex;align-items:center;justify-content:center}
+.pg-f.ht{animation:pgw 1.5s ease-in-out infinite}
+@keyframes pgw{0%,100%{box-shadow:0 0 8px rgba(212,56,13,.4)}50%{box-shadow:0 0 16px rgba(212,56,13,.6)}}
+.pg-f i{font-style:normal;font-size:8px;font-weight:800;color:#fff}
+.pg-r{font-size:11px;color:var(--t2);margin-top:3px}
+.cn{background:#FFF8F0;border:1px solid #FFE0C0;border-radius:var(--rs);padding:10px;margin-bottom:12px;text-align:center}
+.cn.ug{background:#FFF0F0;border-color:#FFCDD2;animation:ub 2s ease-in-out infinite}
+@keyframes ub{50%{background:#FFE0E0}}
+.cn-l{font-size:11px;font-weight:700;color:var(--p);margin-bottom:5px}
+.cn-b{display:flex;justify-content:center;gap:6px}
+.cn-x{background:var(--s);color:#fff;padding:5px 8px;border-radius:7px;min-width:48px;text-align:center}
+.cn-x b{font-family:'Cairo';font-size:18px;font-weight:900;display:block;line-height:1}
+.cn-x small{font-size:9px;opacity:.7}
+.sp{background:#F8FAFB;border:1px solid var(--bd);border-radius:var(--rs);padding:9px 12px;margin-bottom:12px}
+.sp-r{display:flex;justify-content:space-between;font-size:12px;padding:3px 0}
+.sp-r span:last-child{font-weight:600;color:var(--pd)}
+.bt{width:100%;padding:13px 20px;background:var(--g);color:#fff;border:none;border-radius:var(--rs);font-family:'Cairo';font-size:16px;font-weight:800;cursor:pointer;transition:.3s;box-shadow:0 4px 15px rgba(212,56,13,.3)}
+.bt:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(212,56,13,.4)}
+.bt:disabled{opacity:.7;cursor:not-allowed;transform:none}
+.bt-l{padding:16px;font-size:19px;margin-top:10px}
+.co{text-align:center;font-size:12px;color:var(--ok);font-weight:700;margin-top:6px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;backdrop-filter:blur(4px)}
+.ov.op{display:flex}
+.ml{background:var(--c);border-radius:var(--r);max-width:520px;width:100%;padding:24px;position:relative;box-shadow:0 12px 40px rgba(0,0,0,.12);margin-top:20px;animation:msa .35s cubic-bezier(.23,1,.32,1)}
+@keyframes msa{from{opacity:0;transform:translateY(30px) scale(.96)}}
+.mx{position:absolute;top:14px;left:14px;width:34px;height:34px;border-radius:50%;border:none;background:#F5F5F5;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
+.mx:hover{background:#E0E0E0}
+.mp{display:flex;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--bd)}
+.mp img{width:72px;height:72px;border-radius:12px;object-fit:cover}
+.mp h3{font-family:'Cairo';font-size:15px;font-weight:700;color:var(--s)}
+.mp .ms{font-size:11px;color:var(--t2);font-family:monospace}
+.mp .mc{font-family:'Cairo';font-size:18px;font-weight:800;color:var(--p)}
+.mt{font-family:'Cairo';font-size:20px;font-weight:800;color:var(--s);margin-bottom:18px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:13px;font-weight:700;color:var(--s);margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:2px solid var(--bd);border-radius:var(--rs);font-family:'Tajawal';font-size:14px;outline:none;transition:.2s;background:#FAFAFA}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--p);background:#fff}
+.fg .ie{border-color:var(--er)!important}
+.et{color:var(--er);font-size:11px;font-weight:600;margin-top:3px;display:none}
+.et.sh{display:block}
+.qt{display:flex;align-items:center;width:fit-content;border:2px solid var(--bd);border-radius:var(--rs);overflow:hidden}
+.qt button{width:40px;height:40px;border:none;background:#F5F5F5;font-size:18px;font-weight:700;cursor:pointer}
+.qt button:hover{background:#E8E8E8}
+.qt span{width:50px;text-align:center;font-family:'Cairo';font-size:16px;font-weight:800}
+.os{background:#F8FAFB;border:2px solid var(--bd);border-radius:var(--rs);padding:16px;margin-top:14px}
+.os h4{font-family:'Cairo';font-size:15px;font-weight:800;margin-bottom:10px;color:var(--s)}
+.os-r{display:flex;justify-content:space-between;padding:5px 0;font-size:13px}
+.os-t{border-top:2px solid var(--bd);margin-top:6px;padding-top:8px;font-size:17px;font-weight:800;color:var(--p);font-family:'Cairo'}
+.os-c{text-align:center;margin-top:8px;font-size:13px;color:var(--ok);font-weight:700}
+.su{text-align:center;padding:36px 24px}
+.su .si{font-size:56px;margin-bottom:14px}
+.su h2{font-family:'Cairo';font-size:20px;font-weight:800;color:var(--ok);margin-bottom:10px}
+.su p{font-size:14px;margin-bottom:5px}
+.su-d{background:#F8FAFB;border-radius:var(--rs);padding:14px;margin:16px 0;text-align:right;font-size:13px;line-height:2}
+.fo{background:var(--s);color:#fff;padding:36px 24px;margin-top:50px}
+.fo-i{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px}
+.fo-c h4{font-family:'Cairo';font-size:16px;font-weight:800;margin-bottom:14px;color:var(--a)}
+.fo-c p{font-size:13px;line-height:2;color:rgba(255,255,255,.7)}
+.fo-b{max-width:1400px;margin:20px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:12px;color:rgba(255,255,255,.4)}
+.wa{position:fixed;bottom:20px;left:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:99;text-decoration:none;animation:fb 3s ease-in-out infinite}
+@keyframes fb{50%{transform:translateY(-5px)}}
+.em{text-align:center;padding:50px 20px;color:var(--t2);display:none}
+.em .ei{font-size:56px;margin-bottom:14px}
+.em h3{font-family:'Cairo';font-size:20px;font-weight:700;margin-bottom:6px;color:var(--t)}
+.ld{text-align:center;padding:70px 20px}
+.ld .sp1{width:44px;height:44px;border:4px solid var(--bd);border-top-color:var(--p);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ld p{font-family:'Cairo';font-size:16px;color:var(--t2);font-weight:600}
+@media(max-width:768px){
+  .hd-i{padding:12px 14px}.lg-t{font-size:18px}.lg-i{width:38px;height:38px;font-size:18px}
+  .sr{max-width:100%;order:3;flex-basis:100%}.hr{padding:28px 14px}.hs b{font-size:26px}
+  .gd{grid-template-columns:1fr;gap:14px}.pw{padding:14px}.tb{gap:14px;padding:10px 14px}
+  .tb div{font-size:11px}.ml{padding:18px;margin-top:10px}.ci{height:190px}
+  .cn-x{min-width:42px;padding:4px 6px}.cn-x b{font-size:15px}
+}
+</style>
+</head>
+<body>
+<div class="mq"><div class="mq-t" id="mq"></div></div>
+<header class="hd"><div class="hd-i">
+  <div class="lg"><div class="lg-i">🛍️</div><div><div class="lg-t">B'Gemla</div><div class="lg-s">بالجملة — BGEMLA.COM</div></div></div>
+  <div class="sr"><span class="sr-ic">🔍</span><input type="text" placeholder="ابحث عن منتج..." id="si" oninput="R()"></div>
+</div></header>
+<section class="hr"><div class="hr-c">
+  <h1>🔥 شري بالجملة، وفّر أكثر!</h1>
+  <p>مع B'Gemla كنجمعو الطلبات باش الكل يستافد من ثمن الجملة<br>كلما زاد العدد، كلما نزل الثمن!</p>
+  <div class="hr-s" id="hs"></div>
+</div></section>
+<div class="tb">
+  <div><span class="ti">💵</span><span>الدفع عند الاستلام</span></div>
+  <div><span class="ti">🚚</span><span>توصيل لكل المغرب</span></div>
+  <div><span class="ti">✅</span><span>منتجات أصلية</span></div>
+  <div><span class="ti">🔄</span><span>استبدال مجاني</span></div>
+</div>
+<div class="cw"><div class="cs" id="cs"></div></div>
+<section class="pw">
+  <div class="ph"><h2>🔥 العروض المتاحة</h2><em id="pcc"></em></div>
+  <div id="loading" class="ld"><div class="sp1"></div><p>جاري تحميل العروض...</p></div>
+  <div class="gd" id="gdd"></div>
+  <div class="em" id="em"><div class="ei">🔍</div><h3>لا توجد نتائج</h3><p>جرّب البحث بكلمات مختلفة</p></div>
+</section>
+<div class="ov" id="ov" onclick="if(event.target===this)X()">
+  <div class="ml" onclick="event.stopPropagation()">
+    <button class="mx" onclick="X()">✕</button>
+    <div id="mb"></div>
+  </div>
+</div>
+<footer class="fo"><div class="fo-i">
+  <div class="fo-c"><h4>B'Gemla — بالجملة</h4><p>أول منصة شراء جماعي في المغرب. كنجمعو الطلبات باش نحصلو على ثمن الجملة ونوصلوها لبابك.</p></div>
+  <div class="fo-c"><h4>خدمة الزبناء</h4><p>📞 06XX XXX XXX</p><p>📧 contact@bgemla.com</p><p>⏰ الإثنين - السبت: 9ص - 9م</p></div>
+  <div class="fo-c"><h4>معلومات</h4><p>💵 الدفع عند الاستلام فقط</p><p>🚚 التوصيل خلال 1-5 أيام</p><p>🔄 استبدال خلال 3 أيام</p></div>
+  <div class="fo-c"><h4>كيفاش خدامة؟</h4><p>1. اختار المنتج وسجّل طلبك</p><p>2. كنتسناو يوصل العدد المطلوب</p><p>3. كنطلبو بثمن الجملة</p><p>4. كنوصلوها لبابك — خلّص ملي يوصلك</p></div>
+</div><div class="fo-b">© 2026 B'Gemla — bgemla.com — جميع الحقوق محفوظة</div></footer>
+<a class="wa" href="https://wa.me/212XXXXXXXXX" target="_blank">💬</a>
+
+<script src="config.js"></script>
+<script>
+var P=[],CATS=[],ac="all",cp=null,qq=1;
+var CI=["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","آسفي","الجديدة","بني ملال","خريبكة","سطات","تازة","الناظور","العرائش","برشيد","الحسيمة"];
+
+function F(n){return new Intl.NumberFormat("en-MA").format(n)+" MAD"}
+function D(o,g){return Math.round((o-g)/o*100)}
+function pd(n){return String(n).padStart(2,"0")}
+function TL(e){if(!e)return null;var t=new Date(e)-new Date();if(t<=0)return null;return{d:Math.floor(t/864e5),h:Math.floor(t/36e5%24),m:Math.floor(t/6e4%60),s:Math.floor(t/1e3%60)}}
+
+!function(){var m=["🔥 B'Gemla — شري بالجملة ووفّر حتى 50%!","🚚 توصيل سريع لكل مدن المغرب","💵 خلّص غير ملي يوصلك","👥 كلما زاد العدد نزل الثمن!","🎁 bgemla.com — أول موقع شراء جماعي في المغرب"],h="";for(var r=0;r<2;r++)for(var i=0;i<m.length;i++)h+="<span>"+m[i]+"</span>";document.getElementById("mq").innerHTML=h}();
+
+function updateStats(){
+  var n=0;for(var i=0;i<P.length;i++)n+=P[i].current_orders;
+  document.getElementById("hs").innerHTML='<div class="hs"><b>+'+n+'</b><span>طلب فعّال</span></div><div class="hs"><b>'+P.length+'</b><span>عرض متاح</span></div><div class="hs"><b>50%</b><span>توفير حتى</span></div>';
+}
+
+function loadProducts(){
+  initSupabase();
+  if(!sb){document.getElementById("loading").innerHTML='<div class="ei">⚠️</div><p>خطأ في الإعداد</p>';return}
+  sb.from("products").select("*").eq("active",true).order("created_at",{ascending:false})
+    .then(function(res){
+      P=res.data||[];
+      document.getElementById("loading").style.display="none";
+      updateStats();R();
+    });
+  sb.from("categories").select("*").order("sort_order")
+    .then(function(res){CATS=res.data||[];R()});
+}
+
+function SC(id){ac=id;R()}
+function R(){
+  var h='<button class="ct'+(ac==="all"?" on":"")+'" onclick="SC(\'all\')"><span>🔥</span> الكل</button>';
+  for(var i=0;i<CATS.length;i++){var c=CATS[i];h+='<button class="ct'+(ac===c.id?" on":"")+'" onclick="SC(\''+c.id+'\')"><span>'+c.icon+'</span> '+c.name_ar+'</button>'}
+  document.getElementById("cs").innerHTML=h;
+  var q=document.getElementById("si").value.toLowerCase(),it=[];
+  for(var i=0;i<P.length;i++){var p=P[i];if((ac==="all"||p.category===ac)&&((p.title_ar||"").indexOf(q)>=0||(p.title_fr||"").toLowerCase().indexOf(q)>=0||(p.sku||"").toLowerCase().indexOf(q)>=0))it.push(p)}
+  document.getElementById("pcc").textContent=it.length+" منتج";
+  if(!it.length){document.getElementById("gdd").innerHTML="";document.getElementById("em").style.display="block";return}
+  document.getElementById("em").style.display="none";
+  h="";for(var i=0;i<it.length;i++)h+=CH(it[i]);
+  document.getElementById("gdd").innerHTML=h;
+}
+function CH(p){
+  var d=D(p.original_price,p.group_price),pc=Math.min(p.current_orders/p.min_orders*100,100),ht=pc>=80,rm=p.min_orders-p.current_orders,tl=TL(p.end_date);
+  var fe=[];if(p.feature_1)fe.push(p.feature_1);if(p.feature_2)fe.push(p.feature_2);if(p.feature_3)fe.push(p.feature_3);
+  var fh="";for(var i=0;i<fe.length;i++)fh+='<span>✓ '+fe[i]+'</span>';
+  var s1p=p.shipping_casablanca||0,s2p=p.shipping_other||30;
+  var ch="";
+  if(tl){ch='<div class="cn'+(tl.d<2?" ug":"")+'"><div class="cn-l">⏰ ينتهي خلال</div><div class="cn-b" data-end="'+p.end_date+'"><div class="cn-x"><b>'+pd(tl.d)+'</b><small>يوم</small></div><div class="cn-x"><b>'+pd(tl.h)+'</b><small>ساعة</small></div><div class="cn-x"><b>'+pd(tl.m)+'</b><small>دقيقة</small></div><div class="cn-x"><b>'+pd(tl.s)+'</b><small>ثانية</small></div></div></div>'}
+  else if(p.end_date){ch='<div style="color:var(--er);font-weight:700;text-align:center;padding:10px">انتهى العرض</div>'}
+  return '<div class="cd" onclick="O(\''+p.sku+'\')"><div class="ci"><img src="'+(p.image_url||"")+'" alt="'+p.title_ar+'" loading="lazy"><div class="bg">'+(p.badge||"عرض")+'</div><div class="ds">-'+d+'%</div><div class="sk">SKU: '+p.sku+'</div></div><div class="cb"><h3>'+p.title_ar+'</h3><p class="de">'+(p.description_ar||"")+'</p><div class="ft">'+fh+'</div><div class="pc"><div class="pr"><span class="po">'+F(p.original_price)+'</span><span class="pn">'+F(p.group_price)+'</span></div><div class="sv">وفّر '+F(p.original_price-p.group_price)+'</div></div><div class="pg"><div class="pg-h"><span>'+(ht?'🔥 قارب على الإكتمال!':'👥 الطلبات الجماعية')+'</span><span>'+p.current_orders+' / '+p.min_orders+'</span></div><div class="pg-t"><div class="pg-f'+(ht?" ht":"")+'" style="width:'+pc+'%">'+(pc>=20?'<i>'+Math.round(pc)+'%</i>':'')+'</div></div>'+(rm>0?'<div class="pg-r">باقي <strong>'+rm+'</strong> طلب لتفعيل الثمن</div>':'')+'</div>'+ch+'<div class="sp"><div class="sp-r"><span>🚚 توصيل الدار البيضاء</span><span>'+(s1p===0?'مجاني':F(s1p))+'</span></div><div class="sp-r"><span>📦 توصيل باقي المدن</span><span>'+F(s2p)+'</span></div></div><button class="bt" onclick="event.stopPropagation();O(\''+p.sku+'\')">🛒 اطلب دابا - الدفع عند الاستلام</button><div class="co">💵 الدفع عند الاستلام</div></div></div>'
+}
+setInterval(function(){var bx=document.querySelectorAll(".cn-b[data-end]");for(var i=0;i<bx.length;i++){var tl=TL(bx[i].getAttribute("data-end"));if(!tl){bx[i].parentElement.innerHTML='<div style="color:var(--er);font-weight:700;text-align:center;padding:10px">انتهى العرض</div>';continue}var b=bx[i].querySelectorAll("b");b[0].textContent=pd(tl.d);b[1].textContent=pd(tl.h);b[2].textContent=pd(tl.m);b[3].textContent=pd(tl.s)}},1000);
+
+function FP(s){for(var i=0;i<P.length;i++)if(P[i].sku===s)return P[i];return null}
+function O(s){cp=FP(s);if(!cp)return;qq=1;document.body.style.overflow="hidden";RF();document.getElementById("ov").classList.add("op")}
+function X(){document.getElementById("ov").classList.remove("op");document.body.style.overflow="";cp=null}
+function RF(){
+  var p=cp,ch="";for(var i=0;i<CI.length;i++)ch+='<option value="'+CI[i]+'">'+CI[i]+'</option>';
+  document.getElementById("mb").innerHTML='<div class="mp"><img src="'+(p.image_url||"")+'" alt="'+p.title_ar+'"><div><h3>'+p.title_ar+'</h3><div class="ms">SKU: '+p.sku+'</div><div class="mc">'+F(p.group_price)+'</div></div></div><h2 class="mt">إتمام الطلب</h2><div class="fg"><label>الاسم الكامل *</label><input id="fn" placeholder="مثال: أحمد بنعلي"><span class="et" id="en">المرجو إدخال الاسم</span></div><div class="fg"><label>رقم الهاتف *</label><input id="fp" placeholder="06XXXXXXXX" dir="ltr"><span class="et" id="ep">رقم هاتف غير صالح</span></div><div class="fg"><label>المدينة *</label><select id="fc" onchange="US()">'+ch+'</select></div><div class="fg"><label>العنوان بالتفصيل *</label><textarea id="fa" placeholder="الحي، الزنقة، أقرب معلمة..." rows="3"></textarea><span class="et" id="ea">المرجو إدخال العنوان</span></div><div class="fg"><label>الكمية</label><div class="qt"><button type="button" onclick="QC(-1)">−</button><span id="qv">1</span><button type="button" onclick="QC(1)">+</button></div></div><div class="fg"><label>ملاحظات (اختياري)</label><textarea id="fno" placeholder="لون مفضل، وقت التوصيل..." rows="2"></textarea></div><div class="os" id="sm"></div><button class="bt bt-l" id="sb" onclick="SB()">تأكيد الطلب 🛒</button>';
+  US();
+}
+function QC(d){qq=Math.max(1,Math.min(10,qq+d));document.getElementById("qv").textContent=qq;US()}
+function US(){
+  if(!cp)return;var c=document.getElementById("fc").value,sc=c==="الدار البيضاء"?(cp.shipping_casablanca||0):(cp.shipping_other||30),sub=cp.group_price*qq,tot=sub+sc;
+  document.getElementById("sm").innerHTML='<h4>ملخص الطلب</h4><div class="os-r"><span>ثمن المنتج ('+qq+'×)</span><span>'+F(sub)+'</span></div><div class="os-r"><span>التوصيل ('+c+')</span><span>'+(sc===0?'مجاني':F(sc))+'</span></div><div class="os-r os-t"><span>المجموع</span><span>'+F(tot)+'</span></div><div class="os-c">💵 الدفع عند الاستلام</div>'
+}
+function SB(){
+  var nm=document.getElementById("fn").value.trim(),ph=document.getElementById("fp").value.trim(),ad=document.getElementById("fa").value.trim(),ct=document.getElementById("fc").value,nt=document.getElementById("fno").value.trim(),ok=true;
+  ["en","ep","ea"].forEach(function(x){document.getElementById(x).classList.remove("sh")});
+  ["fn","fp","fa"].forEach(function(x){document.getElementById(x).classList.remove("ie")});
+  if(!nm){document.getElementById("en").classList.add("sh");document.getElementById("fn").classList.add("ie");ok=false}
+  if(!ph||!/^(06|07)\d{8}$/.test(ph.replace(/[\s-]/g,""))){document.getElementById("ep").classList.add("sh");document.getElementById("fp").classList.add("ie");ok=false}
+  if(!ad){document.getElementById("ea").classList.add("sh");document.getElementById("fa").classList.add("ie");ok=false}
+  if(!ok)return;
+  var p=cp,sc=ct==="الدار البيضاء"?(p.shipping_casablanca||0):(p.shipping_other||30),tot=p.group_price*qq+sc;
+  var btn=document.getElementById("sb");btn.disabled=true;btn.textContent="جاري إرسال الطلب...";
+  var now=new Date();
+  var oid="BG-"+now.getFullYear().toString().slice(-2)+("0"+(now.getMonth()+1)).slice(-2)+("0"+now.getDate()).slice(-2)+"-"+Math.floor(Math.random()*9000+1000);
+  var data={order_id:oid,sku:p.sku,product_title:p.title_ar,unit_price:p.group_price,quantity:qq,shipping_cost:sc,total_price:tot,customer_name:nm,phone:ph,city:ct,address:ad,notes:nt,payment_method:"COD",status:"جديد"};
+
+  sb.from("orders").insert(data).then(function(res){
+    if(!res.error){
+      sb.rpc("increment_order_count",{p_sku:p.sku,p_qty:qq});
+      document.getElementById("mb").innerHTML='<div class="su"><div class="si">✅</div><h2>تم تسجيل طلبك بنجاح!</h2><p>شكراً ليك <strong>'+nm+'</strong></p><p>غادي نتواصلو معاك على <strong dir="ltr">'+ph+'</strong></p><div class="su-d"><div>رقم الطلب: '+oid+'</div><div>المنتج: '+p.title_ar+'</div><div>الكمية: '+qq+'</div><div>المجموع: '+F(tot)+'</div><div>💵 الدفع عند الاستلام</div></div><button class="bt" onclick="X()">إغلاق</button></div>';
+    } else {
+      btn.disabled=false;btn.textContent="تأكيد الطلب 🛒";alert("خطأ: "+res.error.message);
+    }
+  });
+}
+loadProducts();
+</script>
+</body>
+</html>
