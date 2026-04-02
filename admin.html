@@ -8,8 +8,6 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:#F4F1ED;color:#1A1A2E}
-
-/* LOGIN */
 .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .login-box{background:#fff;border-radius:16px;padding:40px;max-width:420px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.08);text-align:center}
 .login-box h1{font-size:22px;font-weight:800;color:#1A2744;margin:12px 0 4px}
@@ -21,79 +19,46 @@ body{font-family:'Inter',sans-serif;background:#F4F1ED;color:#1A1A2E}
 .login-box .fg small{font-size:11px;color:#9CA3AF;margin-top:2px;display:block}
 .login-err{color:#E74C3C;font-size:13px;font-weight:600;margin-bottom:10px;display:none}
 .btn-login{width:100%;padding:12px;background:linear-gradient(135deg,#D4380D,#F5A623);color:#fff;border:none;border-radius:8px;font-family:'Inter';font-size:15px;font-weight:700;cursor:pointer}
-.btn-login:hover{box-shadow:0 4px 15px rgba(212,56,13,.3)}
 .login-hint{margin-top:16px;font-size:11px;color:#9CA3AF}
-
-/* TOP BAR */
 .top{background:linear-gradient(135deg,#1A2744,#2D4160);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
 .top-l{display:flex;align-items:center;gap:12px;color:#fff}
-.top-l .icon{font-size:24px}
 .top-l b{font-size:17px;font-weight:800}
 .top-l span{font-size:11px;color:#F5A623;font-weight:600;display:block}
-.top-r{display:flex;align-items:center;gap:16px}
-.top-r a{color:rgba(255,255,255,.7);font-size:13px;text-decoration:none;font-weight:600}
+.top-r a{color:rgba(255,255,255,.7);font-size:13px;text-decoration:none;font-weight:600;margin-left:16px}
 .top-r a:hover{color:#fff}
-
-/* TABS */
 .tabs{display:flex;gap:4px;background:#fff;padding:6px;margin:20px 24px 0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);width:fit-content}
 .tab{padding:9px 22px;border-radius:7px;cursor:pointer;font-size:13px;font-weight:600;color:#6B7280;transition:.2s;border:none;background:none;font-family:'Inter'}
-.tab.on{background:#D4380D;color:#fff;box-shadow:0 2px 10px rgba(212,56,13,.3)}
+.tab.on{background:#D4380D;color:#fff}
 .tab:hover:not(.on){background:#F5F0EB;color:#1A2744}
-
-/* PAGES */
-.page{display:none;padding:20px 24px}
-.page.on{display:block}
-
-/* STATS */
+.page{display:none;padding:20px 24px}.page.on{display:block}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px}
 .stat{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .stat-l{font-size:12px;color:#6B7280;font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
 .stat-v{font-size:26px;font-weight:800;color:#1A2744}
-.stat-v.rev{color:#27AE60}
-.stat-v.new{color:#D4380D}
-
-/* CARD */
+.stat-v.rev{color:#27AE60}.stat-v.new{color:#D4380D}
 .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:16px}
 .card-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .card-h h3{font-size:16px;font-weight:700;color:#1A2744}
-
-/* BUTTONS */
 .btn-p{padding:9px 18px;background:linear-gradient(135deg,#D4380D,#F5A623);color:#fff;border:none;border-radius:7px;font-family:'Inter';font-size:13px;font-weight:700;cursor:pointer}
-.btn-p:hover{box-shadow:0 3px 12px rgba(212,56,13,.3)}
 .btn-s{padding:5px 12px;border:1px solid #E5E7EB;border-radius:6px;background:#fff;font-family:'Inter';font-size:11px;font-weight:600;cursor:pointer;color:#1A2744}
 .btn-s:hover{background:#F5F0EB}
 .btn-d{padding:5px 12px;border:1px solid #FFCDD2;border-radius:6px;background:#FFF5F5;font-family:'Inter';font-size:11px;font-weight:600;cursor:pointer;color:#E74C3C}
-.btn-d:hover{background:#FFE0E0}
-
-/* TABLE */
 table{width:100%;border-collapse:collapse;font-size:12px}
 th{text-align:left;padding:10px 12px;background:#F8F6F3;color:#6B7280;font-weight:600;font-size:11px;border-bottom:1px solid #E5E7EB;text-transform:uppercase;letter-spacing:.3px}
 td{padding:10px 12px;border-bottom:1px solid #F0EDEA;vertical-align:middle}
 tr:hover td{background:#FAFAF8}
 .img-th{width:44px;height:44px;border-radius:8px;object-fit:cover}
-
-/* BADGES */
 .badge-s{display:inline-block;padding:3px 10px;border-radius:50px;font-size:10px;font-weight:700}
-.b-new{background:#FFF3E0;color:#E65100}
-.b-conf{background:#E3F2FD;color:#1565C0}
-.b-ship{background:#FFF8E1;color:#F57F17}
-.b-done{background:#E8F5E9;color:#2E7D32}
-.b-cancel{background:#FFEBEE;color:#C62828}
-.b-active{background:#E8F5E9;color:#2E7D32}
-.b-inactive{background:#FFF3E0;color:#E65100}
-
+.b-new{background:#FFF3E0;color:#E65100}.b-conf{background:#E3F2FD;color:#1565C0}.b-ship{background:#FFF8E1;color:#F57F17}.b-done{background:#E8F5E9;color:#2E7D32}.b-cancel{background:#FFEBEE;color:#C62828}
+.b-active{background:#E8F5E9;color:#2E7D32}.b-inactive{background:#FFF3E0;color:#E65100}
 select.st-sel{padding:4px 8px;border:1px solid #E5E7EB;border-radius:6px;font-family:'Inter';font-size:11px;font-weight:600;cursor:pointer;background:#fff}
-
-/* FILTERS */
 .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .filt{padding:5px 14px;border-radius:50px;border:1px solid #E5E7EB;background:#fff;font-family:'Inter';font-size:11px;font-weight:600;cursor:pointer;color:#6B7280}
 .filt.on{background:#D4380D;color:#fff;border-color:#D4380D}
 .filt:hover:not(.on){background:#F5F0EB}
-
-/* MODAL */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
 .ov.op{display:flex}
-.fm{background:#fff;border-radius:14px;max-width:620px;width:100%;padding:28px;margin-top:20px;box-shadow:0 12px 40px rgba(0,0,0,.15)}
+.fm{background:#fff;border-radius:14px;max-width:640px;width:100%;padding:28px;margin-top:20px;box-shadow:0 12px 40px rgba(0,0,0,.15)}
 .fm h2{font-size:18px;font-weight:700;color:#1A2744;margin-bottom:20px}
 .fm-g{margin-bottom:12px}
 .fm-g label{display:block;font-size:12px;font-weight:600;color:#1A2744;margin-bottom:3px}
@@ -101,50 +66,48 @@ select.st-sel{padding:4px 8px;border:1px solid #E5E7EB;border-radius:6px;font-fa
 .fm-g input:focus,.fm-g select:focus,.fm-g textarea:focus{border-color:#D4380D}
 .fm-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .fm-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.fm-row4{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .fm-act{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
 .fm-act button{padding:9px 22px;border-radius:7px;font-family:'Inter';font-size:14px;font-weight:700;cursor:pointer;border:none}
 .fm-save{background:linear-gradient(135deg,#D4380D,#F5A623);color:#fff}
 .fm-cancel{background:#F5F0EB;color:#1A2744}
 .empty-t{text-align:center;padding:40px;color:#6B7280;font-size:13px}
-
+.img-section{margin-bottom:16px}
+.img-section h4{font-size:13px;font-weight:700;color:#1A2744;margin-bottom:8px}
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.img-slot{border:2px dashed #E5E7EB;border-radius:8px;padding:8px;text-align:center}
+.img-slot.has-img{border-style:solid;border-color:#D4380D}
+.img-slot label{font-size:11px;font-weight:600;color:#6B7280;display:block;margin-bottom:4px}
+.img-slot input{width:100%;padding:6px 8px;border:1px solid #E5E7EB;border-radius:5px;font-size:11px;font-family:'Inter'}
+.img-slot input:focus{border-color:#D4380D;outline:none}
+.img-preview{width:100%;height:80px;object-fit:cover;border-radius:6px;margin-top:6px;display:none;background:#F5F0EB}
+.img-preview.show{display:block}
+.img-count{display:flex;gap:4px;margin-left:8px}
+.img-dot{width:8px;height:8px;border-radius:50%;background:#E5E7EB}
+.img-dot.filled{background:#D4380D}
 #dashboard{display:none}
-
-@media(max-width:768px){
-  .fm-row,.fm-row3{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr 1fr}
-  table{font-size:11px}th,td{padding:7px 6px}
-  .tabs{margin:12px 14px 0}.page{padding:14px}
-}
+@media(max-width:768px){.fm-row,.fm-row3,.fm-row4,.img-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}table{font-size:11px}th,td{padding:7px 6px}}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div class="login-wrap" id="loginPage">
   <div class="login-box">
     <div style="font-size:48px">🛍️</div>
     <h1>Admin Dashboard</h1>
     <p class="sub">B'Gemla — بالجملة</p>
-    <div class="fg">
-      <label>Password</label>
-      <input id="adminPw" type="password" placeholder="Enter admin password" onkeypress="if(event.key==='Enter')doLogin()">
-    </div>
-    <div class="fg">
-      <label>Supabase Service Role Key</label>
-      <input id="adminSk" type="password" placeholder="eyJhbGciOi..." onkeypress="if(event.key==='Enter')doLogin()">
-      <small>Find it in Supabase → Settings → API → service_role secret</small>
-    </div>
+    <div class="fg"><label>Password</label><input id="adminPw" type="password" placeholder="Enter admin password" onkeypress="if(event.key==='Enter')doLogin()"></div>
+    <div class="fg"><label>Supabase Service Role Key</label><input id="adminSk" type="password" placeholder="eyJhbGciOi..." onkeypress="if(event.key==='Enter')doLogin()"><small>Supabase → Settings → API → service_role secret</small></div>
     <div class="login-err" id="loginErr">Incorrect password</div>
     <button class="btn-login" onclick="doLogin()">Sign In</button>
     <p class="login-hint">Default password: bgemla2026</p>
   </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="dashboard">
 <div class="top">
-  <div class="top-l"><span class="icon">🛍️</span><div><b>B'Gemla Admin</b><span>Dashboard</span></div></div>
-  <div class="top-r"><a href="index.html" target="_blank">🌐 View Store</a><a href="#" onclick="logout()">Sign Out</a></div>
+  <div class="top-l"><span style="font-size:24px">🛍️</span><div><b>B'Gemla Admin</b><span>Dashboard</span></div></div>
+  <div class="top-r"><a href="index.html" target="_blank">View Store</a><a href="#" onclick="logout()">Sign Out</a></div>
 </div>
 <div class="tabs">
   <button class="tab on" onclick="showPage('dash',this)">Overview</button>
@@ -152,31 +115,11 @@ select.st-sel{padding:4px 8px;border:1px solid #E5E7EB;border-radius:6px;font-fa
   <button class="tab" onclick="showPage('ords',this)">Orders</button>
 </div>
 
-<!-- Overview -->
-<div class="page on" id="pg-dash">
-  <div class="stats" id="stats"></div>
-  <div class="card"><div class="card-h"><h3>Recent Orders</h3></div><div id="recentOrders"></div></div>
+<div class="page on" id="pg-dash"><div class="stats" id="stats"></div><div class="card"><div class="card-h"><h3>Recent Orders</h3></div><div id="recentOrders"></div></div></div>
+<div class="page" id="pg-prods"><div class="card"><div class="card-h"><h3>Products</h3><button class="btn-p" onclick="openPF()">+ Add Product</button></div><div id="productsTable"></div></div></div>
+<div class="page" id="pg-ords"><div class="card"><div class="card-h"><h3>Orders</h3></div><div class="filters" id="orderFilters"></div><div id="ordersTable"></div></div></div>
 </div>
 
-<!-- Products -->
-<div class="page" id="pg-prods">
-  <div class="card">
-    <div class="card-h"><h3>Products</h3><button class="btn-p" onclick="openPF()">+ Add Product</button></div>
-    <div id="productsTable"></div>
-  </div>
-</div>
-
-<!-- Orders -->
-<div class="page" id="pg-ords">
-  <div class="card">
-    <div class="card-h"><h3>Orders</h3></div>
-    <div class="filters" id="orderFilters"></div>
-    <div id="ordersTable"></div>
-  </div>
-</div>
-</div>
-
-<!-- Product Form Modal -->
 <div class="ov" id="prodModal" onclick="if(event.target===this)closePF()">
   <div class="fm">
     <h2 id="fmTitle">Add New Product</h2>
@@ -185,15 +128,25 @@ select.st-sel{padding:4px 8px;border:1px solid #E5E7EB;border-radius:6px;font-fa
       <div class="fm-g"><label>SKU *</label><input id="fmSku" placeholder="MA-ELEC-001"></div>
       <div class="fm-g"><label>Category *</label><select id="fmCat"><option value="electronics">Electronics</option><option value="beauty">Beauty</option><option value="home">Home</option><option value="fashion">Fashion</option><option value="kids">Kids</option><option value="sports">Sports</option></select></div>
     </div>
-    <div class="fm-g"><label>Product Title (Arabic) *</label><input id="fmTitleAr" placeholder="سماعات بلوتوث" dir="rtl"></div>
-    <div class="fm-g"><label>Product Title (French)</label><input id="fmTitleFr" placeholder="Écouteurs Bluetooth"></div>
+    <div class="fm-g"><label>Product Title (Arabic) *</label><input id="fmTitleAr" dir="rtl"></div>
+    <div class="fm-g"><label>Product Title (French)</label><input id="fmTitleFr"></div>
     <div class="fm-g"><label>Description (Arabic)</label><textarea id="fmDesc" rows="2" dir="rtl"></textarea></div>
     <div class="fm-row3">
-      <div class="fm-g"><label>Original Price (MAD)</label><input id="fmOp" type="number" placeholder="500"></div>
-      <div class="fm-g"><label>Group Price (MAD)</label><input id="fmGp" type="number" placeholder="250"></div>
+      <div class="fm-g"><label>Original Price (MAD)</label><input id="fmOp" type="number"></div>
+      <div class="fm-g"><label>Group Price (MAD)</label><input id="fmGp" type="number"></div>
       <div class="fm-g"><label>Min Orders</label><input id="fmMin" type="number" value="20"></div>
     </div>
-    <div class="fm-g"><label>Image URL</label><input id="fmImg" placeholder="https://..."></div>
+
+    <div class="img-section">
+      <h4>Product Images (up to 4)</h4>
+      <div class="img-grid">
+        <div class="img-slot" id="slot1"><label>Image 1 (Main) *</label><input id="fmImg1" placeholder="https://..." oninput="prevImg(1)"><img class="img-preview" id="prev1"></div>
+        <div class="img-slot" id="slot2"><label>Image 2</label><input id="fmImg2" placeholder="https://..." oninput="prevImg(2)"><img class="img-preview" id="prev2"></div>
+        <div class="img-slot" id="slot3"><label>Image 3</label><input id="fmImg3" placeholder="https://..." oninput="prevImg(3)"><img class="img-preview" id="prev3"></div>
+        <div class="img-slot" id="slot4"><label>Image 4</label><input id="fmImg4" placeholder="https://..." oninput="prevImg(4)"><img class="img-preview" id="prev4"></div>
+      </div>
+    </div>
+
     <div class="fm-row">
       <div class="fm-g"><label>End Date</label><input id="fmEnd" type="datetime-local"></div>
       <div class="fm-g"><label>Badge Text</label><input id="fmBadge" value="عرض خاص" dir="rtl"></div>
@@ -216,60 +169,46 @@ select.st-sel{padding:4px 8px;border:1px solid #E5E7EB;border-radius:6px;font-fa
 
 <script src="config.js"></script>
 <script>
-var adminSb=null, currentFilter="all";
+var adminSb=null,currentFilter="all";
 
-async function hashPw(pw){
-  var buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(pw));
-  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,"0")}).join("");
+function prevImg(n){
+  var url=document.getElementById("fmImg"+n).value.trim();
+  var prev=document.getElementById("prev"+n);
+  var slot=document.getElementById("slot"+n);
+  if(url){prev.src=url;prev.classList.add("show");slot.classList.add("has-img");prev.onerror=function(){prev.classList.remove("show");slot.classList.remove("has-img")}}
+  else{prev.classList.remove("show");slot.classList.remove("has-img")}
 }
 
+async function hashPw(pw){var buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(pw));return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,"0")}).join("")}
+
 async function doLogin(){
-  var pw=document.getElementById("adminPw").value;
-  var sk=document.getElementById("adminSk").value.trim();
+  var pw=document.getElementById("adminPw").value,sk=document.getElementById("adminSk").value.trim();
   var hash=await hashPw(pw);
   if(hash!==ADMIN_HASH){document.getElementById("loginErr").style.display="block";return}
   if(!sk){alert("Please enter your Supabase Service Role Key");return}
-  sessionStorage.setItem("bg_sk",sk);
-  startDashboard();
+  sessionStorage.setItem("bg_sk",sk);startDashboard();
 }
-
 function startDashboard(){
   var sk=sessionStorage.getItem("bg_sk");
   if(!sk){document.getElementById("loginPage").style.display="flex";document.getElementById("dashboard").style.display="none";return}
   adminSb=supabase.createClient(SUPABASE_URL,sk);
-  document.getElementById("loginPage").style.display="none";
-  document.getElementById("dashboard").style.display="block";
-  loadDash();
+  document.getElementById("loginPage").style.display="none";document.getElementById("dashboard").style.display="block";loadDash();
 }
-
 function logout(){sessionStorage.removeItem("bg_sk");location.reload()}
-
 function showPage(id,el){
   document.querySelectorAll(".page").forEach(function(p){p.classList.remove("on")});
   document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("on")});
-  document.getElementById("pg-"+id).classList.add("on");
-  if(el)el.classList.add("on");
+  document.getElementById("pg-"+id).classList.add("on");if(el)el.classList.add("on");
   if(id==="dash")loadDash();if(id==="prods")loadProds();if(id==="ords")loadOrds();
 }
-
-function badgeHTML(s){
-  var m={"جديد":"b-new","مؤكد":"b-conf","قيد التوصيل":"b-ship","تم التوصيل":"b-done","ملغي":"b-cancel"};
-  var labels={"جديد":"New","مؤكد":"Confirmed","قيد التوصيل":"Shipping","تم التوصيل":"Delivered","ملغي":"Cancelled"};
-  return '<span class="badge-s '+(m[s]||"b-new")+'">'+(labels[s]||s)+'</span>';
-}
+function badgeHTML(s){var m={"جديد":"b-new","مؤكد":"b-conf","قيد التوصيل":"b-ship","تم التوصيل":"b-done","ملغي":"b-cancel"};var l={"جديد":"New","مؤكد":"Confirmed","قيد التوصيل":"Shipping","تم التوصيل":"Delivered","ملغي":"Cancelled"};return '<span class="badge-s '+(m[s]||"b-new")+'">'+(l[s]||s)+'</span>'}
 function fmtMAD(n){return new Intl.NumberFormat("en-MA").format(n||0)+" MAD"}
 
-// ── OVERVIEW ──
 async function loadDash(){
   var {data:prods}=await adminSb.from("products").select("id",{count:"exact"}).eq("active",true);
   var {data:ords,count:ordCount}=await adminSb.from("orders").select("*",{count:"exact"}).order("created_at",{ascending:false}).limit(200);
-  ords=ords||[];
-  var rev=0,newO=0;ords.forEach(function(o){rev+=o.total_price||0;if(o.status==="جديد")newO++});
-  document.getElementById("stats").innerHTML=
-    '<div class="stat"><div class="stat-l">Active Products</div><div class="stat-v">'+(prods?prods.length:0)+'</div></div>'+
-    '<div class="stat"><div class="stat-l">Total Orders</div><div class="stat-v">'+(ordCount||0)+'</div></div>'+
-    '<div class="stat"><div class="stat-l">Revenue</div><div class="stat-v rev">'+fmtMAD(rev)+'</div></div>'+
-    '<div class="stat"><div class="stat-l">New Orders</div><div class="stat-v new">'+newO+'</div></div>';
+  ords=ords||[];var rev=0,newO=0;ords.forEach(function(o){rev+=o.total_price||0;if(o.status==="جديد")newO++});
+  document.getElementById("stats").innerHTML='<div class="stat"><div class="stat-l">Active Products</div><div class="stat-v">'+(prods?prods.length:0)+'</div></div><div class="stat"><div class="stat-l">Total Orders</div><div class="stat-v">'+(ordCount||0)+'</div></div><div class="stat"><div class="stat-l">Revenue</div><div class="stat-v rev">'+fmtMAD(rev)+'</div></div><div class="stat"><div class="stat-l">New Orders</div><div class="stat-v new">'+newO+'</div></div>';
   var recent=ords.slice(0,10);
   if(!recent.length){document.getElementById("recentOrders").innerHTML='<div class="empty-t">No orders yet</div>';return}
   var h='<table><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Total</th><th>Status</th><th>Date</th></tr>';
@@ -277,20 +216,19 @@ async function loadDash(){
   document.getElementById("recentOrders").innerHTML=h+'</table>';
 }
 
-// ── PRODUCTS ──
 async function loadProds(){
-  var {data}=await adminSb.from("products").select("*").order("created_at",{ascending:false});
-  data=data||[];
+  var {data}=await adminSb.from("products").select("*").order("created_at",{ascending:false});data=data||[];
   if(!data.length){document.getElementById("productsTable").innerHTML='<div class="empty-t">No products yet. Click "+ Add Product" to start!</div>';return}
-  var h='<table><tr><th></th><th>SKU</th><th>Product</th><th>Category</th><th>Price</th><th>Group Price</th><th>Orders</th><th>Status</th><th>Actions</th></tr>';
+  var h='<table><tr><th></th><th>SKU</th><th>Product</th><th>Category</th><th>Price</th><th>Group Price</th><th>Images</th><th>Orders</th><th>Status</th><th>Actions</th></tr>';
   data.forEach(function(p){
-    h+='<tr><td>'+(p.image_url?'<img class="img-th" src="'+p.image_url+'">':'📦')+'</td><td><code style="font-size:11px">'+p.sku+'</code></td><td dir="rtl"><strong>'+p.title_ar+'</strong>'+(p.title_fr?'<br><small style="color:#6B7280;direction:ltr">'+p.title_fr+'</small>':'')+'</td><td>'+p.category+'</td><td>'+fmtMAD(p.original_price)+'</td><td><strong style="color:#D4380D">'+fmtMAD(p.group_price)+'</strong></td><td>'+p.current_orders+'/'+p.min_orders+'</td><td><span class="badge-s '+(p.active?"b-active":"b-inactive")+'">'+(p.active?"Active":"Inactive")+'</span></td><td><button class="btn-s" onclick="editP(\''+p.id+'\')">Edit</button> <button class="btn-d" onclick="delP(\''+p.id+'\')">Delete</button></td></tr>'});
+    var imgCount=0;if(p.image_url)imgCount++;if(p.image_url_2)imgCount++;if(p.image_url_3)imgCount++;if(p.image_url_4)imgCount++;
+    var dots='<div class="img-count">';for(var i=0;i<4;i++)dots+='<div class="img-dot'+(i<imgCount?' filled':'')+'"></div>';dots+='</div>';
+    h+='<tr><td>'+(p.image_url?'<img class="img-th" src="'+p.image_url+'">':'📦')+'</td><td><code style="font-size:11px">'+p.sku+'</code></td><td dir="rtl"><strong>'+p.title_ar+'</strong>'+(p.title_fr?'<br><small style="color:#6B7280;direction:ltr">'+p.title_fr+'</small>':'')+'</td><td>'+p.category+'</td><td>'+fmtMAD(p.original_price)+'</td><td><strong style="color:#D4380D">'+fmtMAD(p.group_price)+'</strong></td><td>'+dots+'</td><td>'+p.current_orders+'/'+p.min_orders+'</td><td><span class="badge-s '+(p.active?"b-active":"b-inactive")+'">'+(p.active?"Active":"Inactive")+'</span></td><td><button class="btn-s" onclick="editP(\''+p.id+'\')">Edit</button> <button class="btn-d" onclick="delP(\''+p.id+'\')">Delete</button></td></tr>'});
   document.getElementById("productsTable").innerHTML=h+'</table>';
 }
 
 async function editP(id){
-  var {data}=await adminSb.from("products").select("*").eq("id",id).single();
-  if(!data)return;
+  var {data}=await adminSb.from("products").select("*").eq("id",id).single();if(!data)return;
   document.getElementById("fmTitle").textContent="Edit Product";
   document.getElementById("fmId").value=data.id;
   document.getElementById("fmSku").value=data.sku||"";
@@ -301,7 +239,10 @@ async function editP(id){
   document.getElementById("fmOp").value=data.original_price||"";
   document.getElementById("fmGp").value=data.group_price||"";
   document.getElementById("fmMin").value=data.min_orders||20;
-  document.getElementById("fmImg").value=data.image_url||"";
+  document.getElementById("fmImg1").value=data.image_url||"";
+  document.getElementById("fmImg2").value=data.image_url_2||"";
+  document.getElementById("fmImg3").value=data.image_url_3||"";
+  document.getElementById("fmImg4").value=data.image_url_4||"";
   document.getElementById("fmEnd").value=data.end_date?data.end_date.slice(0,16):"";
   document.getElementById("fmBadge").value=data.badge||"";
   document.getElementById("fmF1").value=data.feature_1||"";
@@ -309,16 +250,17 @@ async function editP(id){
   document.getElementById("fmF3").value=data.feature_3||"";
   document.getElementById("fmS1").value=data.shipping_casablanca||0;
   document.getElementById("fmS2").value=data.shipping_other||30;
+  for(var i=1;i<=4;i++)prevImg(i);
   document.getElementById("prodModal").classList.add("op");
 }
 
 function openPF(){
-  document.getElementById("fmTitle").textContent="Add New Product";
-  document.getElementById("fmId").value="";
-  ["fmSku","fmTitleAr","fmTitleFr","fmDesc","fmOp","fmGp","fmImg","fmF1","fmF2","fmF3"].forEach(function(x){document.getElementById(x).value=""});
+  document.getElementById("fmTitle").textContent="Add New Product";document.getElementById("fmId").value="";
+  ["fmSku","fmTitleAr","fmTitleFr","fmDesc","fmOp","fmGp","fmImg1","fmImg2","fmImg3","fmImg4","fmF1","fmF2","fmF3"].forEach(function(x){document.getElementById(x).value=""});
   document.getElementById("fmMin").value="20";document.getElementById("fmEnd").value="";
   document.getElementById("fmS1").value="0";document.getElementById("fmS2").value="30";
   document.getElementById("fmBadge").value="عرض خاص";document.getElementById("fmCat").value="electronics";
+  for(var i=1;i<=4;i++){document.getElementById("prev"+i).classList.remove("show");document.getElementById("slot"+i).classList.remove("has-img")}
   document.getElementById("prodModal").classList.add("op");
 }
 function closePF(){document.getElementById("prodModal").classList.remove("op")}
@@ -333,37 +275,25 @@ async function saveProd(){
     group_price:parseInt(document.getElementById("fmGp").value)||0,
     min_orders:parseInt(document.getElementById("fmMin").value)||20,
     end_date:document.getElementById("fmEnd").value?new Date(document.getElementById("fmEnd").value).toISOString():null,
-    image_url:document.getElementById("fmImg").value,badge:document.getElementById("fmBadge").value,
-    feature_1:document.getElementById("fmF1").value,feature_2:document.getElementById("fmF2").value,
-    feature_3:document.getElementById("fmF3").value,
+    image_url:document.getElementById("fmImg1").value,
+    image_url_2:document.getElementById("fmImg2").value||null,
+    image_url_3:document.getElementById("fmImg3").value||null,
+    image_url_4:document.getElementById("fmImg4").value||null,
+    badge:document.getElementById("fmBadge").value,
+    feature_1:document.getElementById("fmF1").value,feature_2:document.getElementById("fmF2").value,feature_3:document.getElementById("fmF3").value,
     shipping_casablanca:parseInt(document.getElementById("fmS1").value)||0,
     shipping_other:parseInt(document.getElementById("fmS2").value)||30,active:true
   };
   if(!d.sku||!d.title_ar){alert("SKU and Arabic title are required");return}
   var btn=document.getElementById("fmSaveBtn");btn.disabled=true;btn.textContent="Saving...";
-  var res;
-  if(id){res=await adminSb.from("products").update(d).eq("id",id)}
-  else{res=await adminSb.from("products").insert(d)}
+  var res;if(id){res=await adminSb.from("products").update(d).eq("id",id)}else{res=await adminSb.from("products").insert(d)}
   if(res.error){alert("Error: "+res.error.message)}else{closePF();loadProds()}
   btn.disabled=false;btn.textContent="Save Product";
 }
+async function delP(id){if(!confirm("Delete this product?"))return;await adminSb.from("products").delete().eq("id",id);loadProds()}
 
-async function delP(id){
-  if(!confirm("Are you sure you want to delete this product?"))return;
-  await adminSb.from("products").delete().eq("id",id);
-  loadProds();
-}
-
-// ── ORDERS ──
 async function loadOrds(){
-  var statuses=[
-    {val:"all",label:"All"},
-    {val:"جديد",label:"New"},
-    {val:"مؤكد",label:"Confirmed"},
-    {val:"قيد التوصيل",label:"Shipping"},
-    {val:"تم التوصيل",label:"Delivered"},
-    {val:"ملغي",label:"Cancelled"}
-  ];
+  var statuses=[{val:"all",label:"All"},{val:"جديد",label:"New"},{val:"مؤكد",label:"Confirmed"},{val:"قيد التوصيل",label:"Shipping"},{val:"تم التوصيل",label:"Delivered"},{val:"ملغي",label:"Cancelled"}];
   var fh="";statuses.forEach(function(s){fh+='<button class="filt'+(currentFilter===s.val?" on":"")+'" onclick="filtO(\''+s.val+'\')">'+s.label+'</button>'});
   document.getElementById("orderFilters").innerHTML=fh;
   var q=adminSb.from("orders").select("*").order("created_at",{ascending:false}).limit(200);
@@ -371,14 +301,11 @@ async function loadOrds(){
   var {data}=await q;data=data||[];
   if(!data.length){document.getElementById("ordersTable").innerHTML='<div class="empty-t">No orders found</div>';return}
   var h='<table><tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>City</th><th>Product</th><th>Qty</th><th>Total</th><th>Status</th><th>Date</th></tr>';
-  data.forEach(function(o){
-    h+='<tr><td><strong>'+o.order_id+'</strong></td><td>'+o.customer_name+'</td><td dir="ltr" style="font-size:11px">'+o.phone+'</td><td dir="rtl">'+o.city+'</td><td dir="rtl">'+(o.product_title||o.sku||"-")+'</td><td>'+o.quantity+'</td><td><strong>'+fmtMAD(o.total_price)+'</strong></td><td><select class="st-sel" onchange="updSt(\''+o.id+'\',this.value)"><option value="جديد"'+(o.status==="جديد"?" selected":"")+'>New</option><option value="مؤكد"'+(o.status==="مؤكد"?" selected":"")+'>Confirmed</option><option value="قيد التوصيل"'+(o.status==="قيد التوصيل"?" selected":"")+'>Shipping</option><option value="تم التوصيل"'+(o.status==="تم التوصيل"?" selected":"")+'>Delivered</option><option value="ملغي"'+(o.status==="ملغي"?" selected":"")+'>Cancelled</option></select></td><td><small>'+new Date(o.created_at).toLocaleDateString()+'</small></td></tr>'});
+  data.forEach(function(o){h+='<tr><td><strong>'+o.order_id+'</strong></td><td>'+o.customer_name+'</td><td dir="ltr" style="font-size:11px">'+o.phone+'</td><td dir="rtl">'+o.city+'</td><td dir="rtl">'+(o.product_title||o.sku||"-")+'</td><td>'+o.quantity+'</td><td><strong>'+fmtMAD(o.total_price)+'</strong></td><td><select class="st-sel" onchange="updSt(\''+o.id+'\',this.value)"><option value="جديد"'+(o.status==="جديد"?" selected":"")+'>New</option><option value="مؤكد"'+(o.status==="مؤكد"?" selected":"")+'>Confirmed</option><option value="قيد التوصيل"'+(o.status==="قيد التوصيل"?" selected":"")+'>Shipping</option><option value="تم التوصيل"'+(o.status==="تم التوصيل"?" selected":"")+'>Delivered</option><option value="ملغي"'+(o.status==="ملغي"?" selected":"")+'>Cancelled</option></select></td><td><small>'+new Date(o.created_at).toLocaleDateString()+'</small></td></tr>'});
   document.getElementById("ordersTable").innerHTML=h+'</table>';
 }
 function filtO(s){currentFilter=s;loadOrds()}
 async function updSt(id,st){await adminSb.from("orders").update({status:st}).eq("id",id)}
-
-// ── INIT ──
 if(sessionStorage.getItem("bg_sk")){startDashboard()}
 </script>
 </body>
