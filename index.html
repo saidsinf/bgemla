@@ -7,7 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
 <title>B'Gemla — بالجملة | شري بثمن الجملة</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&family=Cairo:wght@700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
 <style>
 :root{--p:#D4380D;--pd:#A8280A;--pl:#FF6B3D;--s:#1A2744;--a:#F5A623;--ok:#27AE60;--er:#E74C3C;--bg:#F7F4F0;--c:#FFF;--t:#1A1A2E;--t2:#6B7280;--bd:#E5E7EB;--g:linear-gradient(135deg,#D4380D,#FF6B3D 50%,#F5A623);--gd:linear-gradient(135deg,#1A2744,#2D4160);--r:16px;--rs:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -216,9 +216,12 @@ function updateStats(){
 
 function loadProducts(){
   initSupabase();
-  if(!sb){document.getElementById("loading").innerHTML='<div class="ei">⚠️</div><p>خطأ في الإعداد</p>';return}
+  if(!sb){document.getElementById("loading").innerHTML='<div class="ei">⚠️</div><p>خطأ: Supabase not initialized. Check config.js</p>';console.error("Supabase not initialized. Check SUPABASE_URL and SUPABASE_ANON_KEY in config.js");return}
+  console.log("Loading products from Supabase...");
   sb.from("products").select("*").eq("active",true).order("created_at",{ascending:false})
     .then(function(res){
+      console.log("Supabase response:",res);
+      if(res.error){document.getElementById("loading").innerHTML='<div class="ei">⚠️</div><p>Error: '+res.error.message+'</p>';console.error("Supabase error:",res.error);return}
       P=res.data||[];
       for(var i=0;i<P.length;i++){
         var imgs=[];
