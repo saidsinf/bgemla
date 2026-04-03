@@ -191,13 +191,13 @@ body{font-family:'Tajawal','Cairo',sans-serif;background:var(--bg);color:var(--t
 </div>
 <footer class="fo"><div class="fo-i">
   <div class="fo-c"><h4>B'Gemla — بالجملة</h4><p>أول منصة شراء جماعي في المغرب. كنجمعو الطلبات باش نحصلو على ثمن الجملة ونوصلوها لبابك.</p></div>
-  <div class="fo-c"><h4>خدمة الزبناء</h4><p>📞 06XX XXX XXX</p><p>📧 contact@bgemla.com</p><p>⏰ الإثنين - السبت: 9ص - 9م</p></div>
+  <div class="fo-c"><h4>خدمة الزبناء</h4><p>📞 06XX XXX XXX</p><p>📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="93f0fcfde7f2f0e7d3f1f4f6fefff2bdf0fcfe">[email&#160;protected]</a></p><p>⏰ الإثنين - السبت: 9ص - 9م</p></div>
   <div class="fo-c"><h4>معلومات</h4><p>💵 الدفع عند الاستلام فقط</p><p>🚚 التوصيل خلال 1-5 أيام</p><p>🔄 استبدال خلال 3 أيام</p></div>
   <div class="fo-c"><h4>كيفاش خدامة؟</h4><p>1. اختار المنتج وسجّل طلبك</p><p>2. كنتسناو يوصل العدد المطلوب</p><p>3. كنطلبو بثمن الجملة</p><p>4. كنوصلوها لبابك — خلّص ملي يوصلك</p></div>
 </div><div class="fo-b">© 2026 B'Gemla — bgemla.com — جميع الحقوق محفوظة</div></footer>
 <a class="wa" href="https://wa.me/212XXXXXXXXX" target="_blank">💬</a>
 
-<script src="config.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="config.js"></script>
 <script>
 var P=[],CATS=[],ac="all",cp=null,qq=1;
 var CI=["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","آسفي","الجديدة","بني ملال","خريبكة","سطات","تازة","الناظور","العرائش","برشيد","الحسيمة"];
@@ -304,14 +304,12 @@ function SB(){
 
   sb.from("orders").insert(data).then(function(res){
     if(!res.error){
-      sb.rpc("increment_order_count",{p_sku:p.sku,p_qty:qq});
-      document.getElementById("mb").innerHTML='<div class="su"><div class="si">✅</div><h2>تم تسجيل طلبك بنجاح!</h2><p>شكراً ليك <strong>'+nm+'</strong></p><p>غادي نتواصلو معاك على <strong dir="ltr">'+ph+'</strong></p><div class="su-d"><div>رقم الطلب: '+oid+'</div><div>المنتج: '+p.title_ar+'</div><div>الكمية: '+qq+'</div><div>المجموع: '+F(tot)+'</div><div>💵 الدفع عند الاستلام</div></div><button class="bt" onclick="X()">إغلاق</button></div>';
-    } else {
-      btn.disabled=false;btn.textContent="تأكيد الطلب 🛒";alert("خطأ: "+res.error.message);
-    }
-  });
-}
-loadProducts();
-</script>
-</body>
-</html>
+      sb.rpc("increment_order_count",{p_sku:p.sku,p_qty:qq}).then(function(rr){
+        if(rr.error){
+          console.log("RPC failed:",rr.error.message,". Trying direct update...");
+          sb.from("products").select("current_orders").eq("sku",p.sku).single().then(function(r2){
+            if(r2.data){sb.from("products").update({current_orders:r2.data.current_orders+qq}).eq("sku",p.sku)}
+          });
+        }
+      });
+      document.getElementById("mb").innerHTML='<div class="su"><div class="si">✅</div><h2>تم تسجيل طلبك بنجاح!</h2><p>شكراً ليك <strong>'+nm+'</strong></p><p>غادي نتواصلو معاك على <strong dir="ltr">'+ph+'</strong></p><div class="su-d"><div>رقم الطلب: '+oid+'</div><div>المنتج: '+p.title_ar+'</div><div>الكمية: '+qq+'</div><div>المجموع: '+F(tot)+'</div><div>💵 الدفع عند الاستلام</div></div><button
