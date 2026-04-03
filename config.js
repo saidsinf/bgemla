@@ -9,8 +9,19 @@ var ADMIN_HASH = "3508dc750ba5546a4afa3ccd0959603df3a412268fafab469ada4e01a38386
 
 var sb = null;
 function initSupabase() {
-  if (typeof supabase !== "undefined" && SUPABASE_URL) {
-    sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  if (sb) return sb;
+  try {
+    if (typeof supabase !== "undefined") {
+      if (typeof supabase.createClient === "function") {
+        sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      } else if (typeof supabase.supabase !== "undefined" && typeof supabase.supabase.createClient === "function") {
+        sb = supabase.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+    }
+    if (sb) console.log("Supabase initialized OK");
+    else console.error("Supabase SDK loaded but createClient not found. typeof supabase:", typeof supabase, Object.keys(supabase||{}));
+  } catch(e) {
+    console.error("Supabase init error:", e);
   }
   return sb;
 }
