@@ -32,10 +32,7 @@ bgemla/
 - Add custom domain: bgemla.com
 
 **4. Admin login**
-- Visit bgemla.com/admin.html
-- Password: bgemla2026
-- Paste your Supabase service_role key
-- Start adding products!
+
 
 ### Custom domain
 Point your domain's DNS to GitHub Pages:
