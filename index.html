@@ -188,13 +188,13 @@ body{font-family:'Tajawal','Cairo',sans-serif;background:var(--bg);color:var(--t
 </div>
 <footer class="fo"><div class="fo-i">
   <div class="fo-c"><h4>B'Gemla — بالجملة</h4><p>أول منصة شراء جماعي في المغرب. كنجمعو الطلبات باش نحصلو على ثمن الجملة ونوصلوها لبابك.</p></div>
-  <div class="fo-c"><h4>خدمة الزبناء</h4><p>📞 0623231834</p><p>📧 contact@bgemla.com</p><p>⏰ الإثنين - السبت: 9ص - 9م</p></div>
+  <div class="fo-c"><h4>خدمة الزبناء</h4><p>📞 0623231834</p><p>📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5b3834352f3a382f1b393c3e36373a75383436">[email&#160;protected]</a></p><p>⏰ الإثنين - السبت: 9ص - 9م</p></div>
   <div class="fo-c"><h4>معلومات</h4><p>💵 الدفع عند الاستلام فقط</p><p>🚚 التوصيل خلال 1-5 أيام</p><p>🔄 استبدال خلال 3 أيام</p></div>
   <div class="fo-c"><h4>كيفاش خدامة؟</h4><p>1. اختار المنتج وسجّل طلبك</p><p>2. كنتسناو يوصل العدد المطلوب</p><p>3. كنطلبو بثمن الجملة</p><p>4. كنوصلوها لبابك — خلّص ملي يوصلك</p></div>
 </div><div class="fo-b">© 2026 B'Gemla — bgemla.com — جميع الحقوق محفوظة</div></footer>
 <a class="wa" href="https://wa.me/212623231834" target="_blank">💬</a>
 
-<script src="config.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="config.js"></script>
 <script>
 var P=[],CATS=[],ac="all",cp=null,qq=1;
 var CI=["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","آسفي","الجديدة","بني ملال","خريبكة","سطات","تازة","الناظور","العرائش","برشيد","الحسيمة"];
@@ -252,8 +252,20 @@ function slideTo(dot,idx){var ci=dot.closest(".ci");var imgs=ci.querySelectorAll
 setInterval(function(){var bx=document.querySelectorAll(".cn-b[data-end]");for(var i=0;i<bx.length;i++){var tl=TL(bx[i].getAttribute("data-end"));if(!tl){bx[i].parentElement.innerHTML='<div style="color:var(--er);font-weight:700;text-align:center;padding:10px">انتهى العرض</div>';continue}var b=bx[i].querySelectorAll("b");b[0].textContent=pd(tl.d);b[1].textContent=pd(tl.h);b[2].textContent=pd(tl.m);b[3].textContent=pd(tl.s)}},1000);
 
 function FP(s){for(var i=0;i<P.length;i++)if(P[i].sku===s)return P[i];return null}
-function O(s){cp=FP(s);if(!cp)return;qq=1;document.body.style.overflow="hidden";RF();document.getElementById("ov").classList.add("op");if(window.fbq){fbq('track','ViewContent',{content_name:cp.title_ar,content_ids:[cp.sku],content_type:'product',value:cp.group_price,currency:'MAD'})}}
+function O(s){cp=FP(s);if(!cp)return;qq=1;document.body.style.overflow="hidden";RD();document.getElementById("ov").classList.add("op");if(window.fbq){fbq('track','ViewContent',{content_name:cp.title_ar,content_ids:[cp.sku],content_type:'product',value:cp.group_price,currency:'MAD'})}}
 function X(){document.getElementById("ov").classList.remove("op");document.body.style.overflow="";cp=null}
+function RD(){
+  var p=cp,d=D(p.original_price,p.group_price),pc=Math.min(p.current_orders/p.min_orders*100,100),ht=pc>=80,rm=p.min_orders-p.current_orders,tl=TL(p.end_date);
+  var fe=[];if(p.feature_1)fe.push(p.feature_1);if(p.feature_2)fe.push(p.feature_2);if(p.feature_3)fe.push(p.feature_3);
+  var fh="";for(var i=0;i<fe.length;i++)fh+='<div style="padding:8px 12px;background:#F0FAF0;color:#2E7D32;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:6px">✓ '+fe[i]+'</div>';
+  var s1p=p.shipping_casablanca||0,s2p=p.shipping_other||30;
+  var imgs=p.imgs||[""];
+  var mainImg=imgs[0]||"";
+  var thumbs="";if(imgs.length>1){thumbs='<div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">';for(var i=0;i<imgs.length;i++)thumbs+='<img src="'+imgs[i]+'" style="width:60px;height:60px;border-radius:8px;object-fit:cover;cursor:pointer;border:2px solid '+(i===0?'var(--p)':'transparent')+'" onclick="this.parentElement.querySelectorAll(\'img\').forEach(function(x){x.style.borderColor=\'transparent\'});this.style.borderColor=\'var(--p)\';document.getElementById(\'ddi\').src=this.src">';thumbs+='</div>'}
+  var ch="";
+  if(tl){ch='<div class="cn'+(tl.d<2?" ug":"")+'" style="margin-bottom:14px"><div class="cn-l">⏰ ينتهي خلال</div><div class="cn-b" data-end="'+p.end_date+'"><div class="cn-x"><b>'+pd(tl.d)+'</b><small>يوم</small></div><div class="cn-x"><b>'+pd(tl.h)+'</b><small>ساعة</small></div><div class="cn-x"><b>'+pd(tl.m)+'</b><small>دقيقة</small></div><div class="cn-x"><b>'+pd(tl.s)+'</b><small>ثانية</small></div></div></div>'}
+  document.getElementById("mb").innerHTML='<div style="text-align:center;margin-bottom:14px"><img id="ddi" src="'+mainImg+'" style="width:100%;max-height:280px;object-fit:cover;border-radius:12px">'+thumbs+'</div><h2 style="font-family:Cairo;font-size:22px;font-weight:800;color:var(--s);margin-bottom:8px">'+p.title_ar+'</h2><div style="font-size:11px;color:var(--t2);font-family:monospace;margin-bottom:10px">SKU: '+p.sku+'</div><p style="font-size:14px;color:var(--t2);line-height:1.8;margin-bottom:14px">'+(p.description_ar||"")+'</p>'+(fh?'<div style="margin-bottom:14px">'+fh+'</div>':'')+'<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:14px;background:#FFF8F0;border-radius:var(--rs)"><span style="font-size:17px;color:var(--t2);text-decoration:line-through">'+F(p.original_price)+'</span><span style="font-family:Cairo;font-size:28px;font-weight:900;color:var(--p)">'+F(p.group_price)+'</span><span style="background:var(--a);color:var(--s);padding:4px 10px;border-radius:50px;font-size:13px;font-weight:800;font-family:Cairo">-'+d+'%</span></div><div class="pg" style="margin-bottom:14px"><div class="pg-h"><span>'+(ht?'🔥 قارب على الإكتمال!':'👥 الطلبات الجماعية')+'</span><span>'+p.current_orders+' / '+p.min_orders+'</span></div><div class="pg-t"><div class="pg-f'+(ht?" ht":"")+'" style="width:'+pc+'%">'+(pc>=20?'<i>'+Math.round(pc)+'%</i>':'')+'</div></div>'+(rm>0?'<div class="pg-r">باقي <strong>'+rm+'</strong> طلب لتفعيل الثمن</div>':'')+'</div>'+ch+'<div class="sp" style="margin-bottom:14px"><div class="sp-r"><span>🚚 توصيل الدار البيضاء</span><span>'+(s1p===0?'مجاني':F(s1p))+'</span></div><div class="sp-r"><span>📦 توصيل باقي المدن</span><span>'+F(s2p)+'</span></div></div><button class="bt bt-l" onclick="RF()">🛒 اطلب الآن - الدفع عند الاستلام</button><div class="co">💵 الدفع عند الاستلام</div>';
+}
 function RF(){
   var p=cp,ch="";for(var i=0;i<CI.length;i++)ch+='<option value="'+CI[i]+'">'+CI[i]+'</option>';
   var mainImg=p.imgs[0]||"";
@@ -284,10 +296,4 @@ function SB(){
       dbUpdate("products","sku=eq."+encodeURIComponent(p.sku),{current_orders:p.current_orders+qq}).catch(function(){})
     });
     if(window.fbq){fbq('track','Lead',{content_name:p.title_ar,content_ids:[p.sku],content_type:'product',value:tot,currency:'MAD',num_items:qq})}
-    document.getElementById("mb").innerHTML='<div class="su"><div class="si">✅</div><h2>تم تسجيل طلبك بنجاح!</h2><p>شكراً ليك <strong>'+nm+'</strong></p><p>غادي نتواصلو معاك على <strong dir="ltr">'+ph+'</strong></p><div class="su-d"><div>رقم الطلب: '+oid+'</div><div>المنتج: '+p.title_ar+'</div><div>الكمية: '+qq+'</div><div>المجموع: '+F(tot)+'</div><div>💵 الدفع عند الاستلام</div></div><button class="bt" onclick="X()">إغلاق</button></div>';
-  }).catch(function(){btn.disabled=false;btn.textContent="تأكيد الطلب 🛒";alert("Connection error")});
-}
-loadProducts();
-</script>
-</body>
-</html>
+    document.getElementById("mb").innerHTML='<div class="su"><div class="si">✅</div><h2>تم تسجيل طلبك بنجاح!</h2><p>شكراً ليك <strong>'+nm+'</strong></p><p>غادي نتواصلو معاك على <strong dir="ltr">'+ph+'</strong></p><div class="su-d"><div>رقم الطلب: '+oid+'</div><div>المنتج: '+p.title_ar+'</div><div>الكمية: '+qq+'</div><div>المجموع: '+F(tot)+'</div><div>💵 الدفع عند الاستلام</d
