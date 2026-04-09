@@ -295,7 +295,7 @@ function SB(){
     dbRpc("increment_order_count",{p_sku:p.sku,p_qty:qq}).catch(function(){
       dbUpdate("products","sku=eq."+encodeURIComponent(p.sku),{current_orders:p.current_orders+qq}).catch(function(){})
     });
-    if(window.fbq){fbq('track','Lead',{content_name:p.title_ar,content_ids:[p.sku],content_type:'product',value:tot,currency:'MAD',num_items:qq})}
+    if(window.fbq){fbq('track','Purchase',{content_name:p.title_ar,content_ids:[p.sku],content_type:'product',value:tot,currency:'MAD',num_items:qq})}
     document.getElementById("mb").innerHTML='<div class="su"><div class="si">✅</div><h2>تم تسجيل طلبك بنجاح!</h2><p>شكراً ليك <strong>'+nm+'</strong></p><p>غادي نتواصلو معاك على <strong dir="ltr">'+ph+'</strong></p><div class="su-d"><div>رقم الطلب: '+oid+'</div><div>المنتج: '+p.title_ar+'</div><div>الكمية: '+qq+'</div><div>المجموع: '+F(tot)+'</div><div>💵 الدفع عند الاستلام</div></div><button class="bt" onclick="X()">إغلاق</button></div>';
   }).catch(function(){btn.disabled=false;btn.textContent="تأكيد الطلب 🛒";alert("Connection error")});
 }
