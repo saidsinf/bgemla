@@ -7,6 +7,21 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
 <title>B'Gemla — بالجملة | شري بثمن الجملة</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&family=Cairo:wght@700;800;900&display=swap" rel="stylesheet">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1273641700387431');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1273641700387431&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
 :root{--p:#D4380D;--pd:#A8280A;--pl:#FF6B3D;--s:#1A2744;--a:#F5A623;--ok:#27AE60;--er:#E74C3C;--bg:#F7F4F0;--c:#FFF;--t:#1A1A2E;--t2:#6B7280;--bd:#E5E7EB;--g:linear-gradient(135deg,#D4380D,#FF6B3D 50%,#F5A623);--gd:linear-gradient(135deg,#1A2744,#2D4160);--r:16px;--rs:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -237,7 +252,7 @@ function slideTo(dot,idx){var ci=dot.closest(".ci");var imgs=ci.querySelectorAll
 setInterval(function(){var bx=document.querySelectorAll(".cn-b[data-end]");for(var i=0;i<bx.length;i++){var tl=TL(bx[i].getAttribute("data-end"));if(!tl){bx[i].parentElement.innerHTML='<div style="color:var(--er);font-weight:700;text-align:center;padding:10px">انتهى العرض</div>';continue}var b=bx[i].querySelectorAll("b");b[0].textContent=pd(tl.d);b[1].textContent=pd(tl.h);b[2].textContent=pd(tl.m);b[3].textContent=pd(tl.s)}},1000);
 
 function FP(s){for(var i=0;i<P.length;i++)if(P[i].sku===s)return P[i];return null}
-function O(s){cp=FP(s);if(!cp)return;qq=1;document.body.style.overflow="hidden";RF();document.getElementById("ov").classList.add("op")}
+function O(s){cp=FP(s);if(!cp)return;qq=1;document.body.style.overflow="hidden";RF();document.getElementById("ov").classList.add("op");if(window.fbq){fbq('track','ViewContent',{content_name:cp.title_ar,content_ids:[cp.sku],content_type:'product',value:cp.group_price,currency:'MAD'})}}
 function X(){document.getElementById("ov").classList.remove("op");document.body.style.overflow="";cp=null}
 function RF(){
   var p=cp,ch="";for(var i=0;i<CI.length;i++)ch+='<option value="'+CI[i]+'">'+CI[i]+'</option>';
@@ -268,6 +283,7 @@ function SB(){
     dbRpc("increment_order_count",{p_sku:p.sku,p_qty:qq}).catch(function(){
       dbUpdate("products","sku=eq."+encodeURIComponent(p.sku),{current_orders:p.current_orders+qq}).catch(function(){})
     });
+    if(window.fbq){fbq('track','Lead',{content_name:p.title_ar,content_ids:[p.sku],content_type:'product',value:tot,currency:'MAD',num_items:qq})}
     document.getElementById("mb").innerHTML='<div class="su"><div class="si">✅</div><h2>تم تسجيل طلبك بنجاح!</h2><p>شكراً ليك <strong>'+nm+'</strong></p><p>غادي نتواصلو معاك على <strong dir="ltr">'+ph+'</strong></p><div class="su-d"><div>رقم الطلب: '+oid+'</div><div>المنتج: '+p.title_ar+'</div><div>الكمية: '+qq+'</div><div>المجموع: '+F(tot)+'</div><div>💵 الدفع عند الاستلام</div></div><button class="bt" onclick="X()">إغلاق</button></div>';
   }).catch(function(){btn.disabled=false;btn.textContent="تأكيد الطلب 🛒";alert("Connection error")});
 }
